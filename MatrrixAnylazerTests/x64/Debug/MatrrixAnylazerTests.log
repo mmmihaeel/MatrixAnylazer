@@ -1,0 +1,26 @@
+﻿  test.cpp
+c:\Users\ADMIN\source\repos\MatrixAnylazer\MatrixAnylazer\Matrix.cpp(64,17): warning C4984: 'if constexpr' is a C++17 language extension
+c:\Users\ADMIN\source\repos\MatrixAnylazer\MatrixAnylazer\Matrix.cpp(14,1): message : while compiling class template member function 'void Matrix<int>::loadFromFile(const std::string &)'
+C:\Users\ADMIN\source\repos\MatrixAnylazer\MatrrixAnylazerTests\test.cpp(33,24): message : see the first reference to 'Matrix<int>::loadFromFile' in 'MatrixTest_LoadValidMatrix_Test::TestBody'
+c:\Users\ADMIN\source\repos\MatrixAnylazer\MatrixAnylazer\Matrix.cpp(188,27): message : see reference to class template instantiation 'Matrix<int>' being compiled
+c:\Users\ADMIN\source\repos\MatrixAnylazer\MatrixAnylazer\Matrix.cpp(68,22): warning C4984: 'if constexpr' is a C++17 language extension
+c:\Users\ADMIN\source\repos\MatrixAnylazer\MatrixAnylazer\Matrix.cpp(139,11): warning C4267: 'initializing': conversion from 'size_t' to 'int', possible loss of data
+c:\Users\ADMIN\source\repos\MatrixAnylazer\MatrixAnylazer\Matrix.cpp(112,1): message : while compiling class template member function 'void Matrix<int>::printResultsToFile(const std::string &) const'
+C:\Users\ADMIN\source\repos\MatrixAnylazer\MatrrixAnylazerTests\test.cpp(100,30): message : see the first reference to 'Matrix<int>::printResultsToFile' in 'MatrixTest_SaveMatrixToFile_Test::TestBody'
+c:\Users\ADMIN\source\repos\MatrixAnylazer\MatrixAnylazer\AboveMainDiagonalOperation.cpp(24,14): warning C4267: 'initializing': conversion from 'size_t' to 'int', possible loss of data
+c:\Users\ADMIN\source\repos\MatrixAnylazer\MatrixAnylazer\AboveMainDiagonalOperation.cpp(18,1): message : while compiling class template member function 'void AboveMainDiagonalOperation<int>::execute(void)'
+C:\Users\ADMIN\source\repos\MatrixAnylazer\MatrrixAnylazerTests\test.cpp(130,15): message : see the first reference to 'AboveMainDiagonalOperation<int>::execute' in 'OperationTest_AboveMainDiagonal_Test::TestBody'
+C:\Users\ADMIN\source\repos\MatrixAnylazer\MatrrixAnylazerTests\test.cpp(129,37): message : see reference to class template instantiation 'AboveMainDiagonalOperation<int>' being compiled
+c:\Users\ADMIN\source\repos\MatrixAnylazer\MatrixAnylazer\BelowMainDiagonalOperation.cpp(24,14): warning C4267: 'initializing': conversion from 'size_t' to 'int', possible loss of data
+c:\Users\ADMIN\source\repos\MatrixAnylazer\MatrixAnylazer\BelowMainDiagonalOperation.cpp(18,1): message : while compiling class template member function 'void BelowMainDiagonalOperation<int>::execute(void)'
+C:\Users\ADMIN\source\repos\MatrixAnylazer\MatrrixAnylazerTests\test.cpp(140,15): message : see the first reference to 'BelowMainDiagonalOperation<int>::execute' in 'OperationTest_BelowMainDiagonal_Test::TestBody'
+C:\Users\ADMIN\source\repos\MatrixAnylazer\MatrrixAnylazerTests\test.cpp(139,37): message : see reference to class template instantiation 'BelowMainDiagonalOperation<int>' being compiled
+c:\Users\ADMIN\source\repos\MatrixAnylazer\MatrixAnylazer\AboveSideDiagonalOperation.cpp(24,14): warning C4267: 'initializing': conversion from 'size_t' to 'int', possible loss of data
+c:\Users\ADMIN\source\repos\MatrixAnylazer\MatrixAnylazer\AboveSideDiagonalOperation.cpp(18,1): message : while compiling class template member function 'void AboveSideDiagonalOperation<int>::execute(void)'
+C:\Users\ADMIN\source\repos\MatrixAnylazer\MatrrixAnylazerTests\test.cpp(150,15): message : see the first reference to 'AboveSideDiagonalOperation<int>::execute' in 'OperationTest_AboveSideDiagonal_Test::TestBody'
+C:\Users\ADMIN\source\repos\MatrixAnylazer\MatrrixAnylazerTests\test.cpp(149,37): message : see reference to class template instantiation 'AboveSideDiagonalOperation<int>' being compiled
+c:\Users\ADMIN\source\repos\MatrixAnylazer\MatrixAnylazer\BelowSideDiagonalOperation.cpp(24,14): warning C4267: 'initializing': conversion from 'size_t' to 'int', possible loss of data
+c:\Users\ADMIN\source\repos\MatrixAnylazer\MatrixAnylazer\BelowSideDiagonalOperation.cpp(18,1): message : while compiling class template member function 'void BelowSideDiagonalOperation<int>::execute(void)'
+C:\Users\ADMIN\source\repos\MatrixAnylazer\MatrrixAnylazerTests\test.cpp(160,15): message : see the first reference to 'BelowSideDiagonalOperation<int>::execute' in 'OperationTest_BelowSideDiagonal_Test::TestBody'
+C:\Users\ADMIN\source\repos\MatrixAnylazer\MatrrixAnylazerTests\test.cpp(159,37): message : see reference to class template instantiation 'BelowSideDiagonalOperation<int>' being compiled
+  MatrrixAnylazerTests.vcxproj -> C:\Users\ADMIN\source\repos\MatrixAnylazer\x64\Debug\MatrrixAnylazerTests.exe

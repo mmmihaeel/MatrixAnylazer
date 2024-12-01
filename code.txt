@@ -1,0 +1,825 @@
+AboveMainDiagonalOperation.cpp:
+#include "AboveMainDiagonalOperation.h"
+#include <algorithm>
+#include <stdexcept>
+#include <sstream>
+
+template <typename T>
+AboveMainDiagonalOperation<T>::AboveMainDiagonalOperation(const std::vector<std::vector<T>>& matrix)
+{
+    if (matrix.empty() || matrix.size() != matrix[0].size())
+    {
+        throw std::invalid_argument("Matrix must be non-empty and square.");
+    }
+    this->matrix = matrix;
+}
+
+template <typename T>
+void AboveMainDiagonalOperation<T>::execute()
+{
+    if (matrix.empty() || matrix.size() != matrix[0].size())
+    {
+        throw std::runtime_error("Matrix is invalid or not square.");
+    }
+
+    int size = matrix.size();
+    minVal = matrix[0][1];  
+    maxVal = matrix[0][1];
+
+    std::cout << "Matrix size: " << size << "\n";
+    std::cout << "Initial minVal = " << minVal << ", maxVal = " << maxVal << "\n";
+
+    for (int i = 0; i < size; ++i)
+    {
+        for (int j = i + 1; j < size; ++j)
+        {
+            minVal = std::min(minVal, matrix[i][j]);
+            maxVal = std::max(maxVal, matrix[i][j]);
+            std::cout << "Processing element at (" << i << "," << j << ") = " << matrix[i][j] << "\n";
+        }
+    }
+
+    std::cout << "Final minVal = " << minVal << ", maxVal = " << maxVal << "\n";
+    std::ostringstream oss;
+    oss << "Above Main Diagonal: Min = " << minVal << ", Max = " << maxVal;
+
+    result = oss.str();
+
+    std::cout << "Result: " << result << "\n";
+}
+
+template <typename T>
+T AboveMainDiagonalOperation<T>::getMinValue() const
+{
+    return minVal;
+}
+
+template <typename T>
+T AboveMainDiagonalOperation<T>::getMaxValue() const
+{
+    return maxVal;
+}
+
+template <typename T>
+void AboveMainDiagonalOperation<T>::setMinValue(T value)
+{
+    minVal = value;
+}
+
+template <typename T>
+void AboveMainDiagonalOperation<T>::setMaxValue(T value)
+{
+    maxVal = value;
+}
+
+template <typename T>
+std::string AboveMainDiagonalOperation<T>::getResult() const
+{
+    return result;
+}
+
+
+AboveMainDiagonalOperation.h:
+#ifndef ABOVE_MAIN_DIAGONAL_OPERATION_H
+#define ABOVE_MAIN_DIAGONAL_OPERATION_H
+
+#include "Operation.h"
+#include <vector>
+#include <string>
+#include <sstream>
+#include <limits>
+#include <stdexcept>
+
+template <typename T>
+class AboveMainDiagonalOperation : public Operation
+{
+public:
+    AboveMainDiagonalOperation() = default;
+
+    explicit AboveMainDiagonalOperation(const std::vector<std::vector<T>>& matrix);
+
+    void execute() override;
+
+    T getMinValue() const;
+    T getMaxValue() const;
+
+    void setMinValue(T value);
+    void setMaxValue(T value);
+
+    std::string getResult() const;
+
+private:
+    std::vector<std::vector<T>> matrix;
+    T minVal = std::numeric_limits<T>::max();
+    T maxVal = std::numeric_limits<T>::min();
+    std::string result;
+};
+
+#endif 
+
+
+AboveSideDiagonalOperation.cpp:
+#include "AboveSideDiagonalOperation.h"
+#include <algorithm>
+#include <stdexcept>
+#include <sstream>
+
+template <typename T>
+AboveSideDiagonalOperation<T>::AboveSideDiagonalOperation(const std::vector<std::vector<T>>& matrix)
+{
+    if (matrix.empty() || matrix.size() != matrix[0].size())
+    {
+        throw std::invalid_argument("Matrix must be non-empty and square.");
+    }
+    this->matrix = matrix;
+}
+
+template <typename T>
+void AboveSideDiagonalOperation<T>::execute()
+{
+    if (matrix.empty() || matrix.size() != matrix[0].size())
+    {
+        throw std::runtime_error("Matrix is invalid or not square.");
+    }
+
+    int size = matrix.size();
+    minVal = matrix[0][size - 1];
+    maxVal = matrix[0][size - 1];
+
+    std::cout << "Matrix size: " << size << "\n";
+    std::cout << "Initial minVal = " << minVal << ", maxVal = " << maxVal << "\n";
+
+    for (int i = 0; i < size; ++i)
+    {
+        for (int j = size - i - 1; j < size; ++j)
+        {
+            minVal = std::min(minVal, matrix[i][j]);
+            maxVal = std::max(maxVal, matrix[i][j]);
+
+            std::cout << "Processing element at (" << i << "," << j << ") = " << matrix[i][j] << "\n";
+        }
+    }
+
+    std::cout << "Final minVal = " << minVal << ", maxVal = " << maxVal << "\n";
+  
+    std::ostringstream oss;
+    oss << "Above Side Diagonal: Min = " << minVal << ", Max = " << maxVal;
+
+    result = oss.str();
+
+    std::cout << "Result: " << result << "\n";
+}
+
+template <typename T>
+T AboveSideDiagonalOperation<T>::getMinValue() const
+{
+    return minVal;
+}
+
+template <typename T>
+T AboveSideDiagonalOperation<T>::getMaxValue() const
+{
+    return maxVal;
+}
+
+template <typename T>
+void AboveSideDiagonalOperation<T>::setMinValue(T value)
+{
+    minVal = value;
+}
+
+template <typename T>
+void AboveSideDiagonalOperation<T>::setMaxValue(T value)
+{
+    maxVal = value;
+}
+
+template <typename T>
+std::string AboveSideDiagonalOperation<T>::getResult() const
+{
+    return result;
+}
+
+
+AboveSideDiagonalOperation.h:
+#ifndef ABOVE_SIDE_DIAGONAL_OPERATION_H
+#define ABOVE_SIDE_DIAGONAL_OPERATION_H
+
+#include "Operation.h"
+#include <vector>
+#include <string>
+#include <sstream>
+#include <limits>
+#include <stdexcept>
+
+template <typename T>
+class AboveSideDiagonalOperation : public Operation
+{
+public:
+    AboveSideDiagonalOperation() = default;
+
+    explicit AboveSideDiagonalOperation(const std::vector<std::vector<T>>& matrix);
+
+    void execute() override;
+
+    T getMinValue() const;
+    T getMaxValue() const;
+
+    void setMinValue(T value);
+    void setMaxValue(T value);
+
+    std::string getResult() const;
+
+private:
+    std::vector<std::vector<T>> matrix;
+    T minVal = std::numeric_limits<T>::max();
+    T maxVal = std::numeric_limits<T>::min();
+    std::string result;
+};
+
+#endif
+
+BelowMainDiagonalOperation.cpp:
+#include "BelowMainDiagonalOperation.h"
+#include <algorithm>
+#include <stdexcept>
+#include <sstream>
+
+template <typename T>
+BelowMainDiagonalOperation<T>::BelowMainDiagonalOperation(const std::vector<std::vector<T>>& matrix)
+{
+    if (matrix.empty() || matrix.size() != matrix[0].size())
+    {
+        throw std::invalid_argument("Matrix must be non-empty and square.");
+    }
+    this->matrix = matrix;
+}
+
+template <typename T>
+void BelowMainDiagonalOperation<T>::execute()
+{
+    if (matrix.empty() || matrix.size() != matrix[0].size())
+    {
+        throw std::runtime_error("Matrix is invalid or not square.");
+    }
+
+    int size = matrix.size();
+    minVal = matrix[1][0];
+    maxVal = matrix[1][0];
+
+    std::cout << "Matrix size: " << size << "\n";
+    std::cout << "Initial minVal = " << minVal << ", maxVal = " << maxVal << "\n";
+
+    for (int i = 1; i < size; ++i)
+    {
+        for (int j = 0; j < i; ++j)
+        {
+            minVal = std::min(minVal, matrix[i][j]);
+            maxVal = std::max(maxVal, matrix[i][j]);
+            std::cout << "Processing element at (" << i << "," << j << ") = " << matrix[i][j] << "\n";
+        }
+    }
+
+    std::cout << "Final minVal = " << minVal << ", maxVal = " << maxVal << "\n";
+
+    std::ostringstream oss;
+    oss << "Below Main Diagonal: Min = " << minVal << ", Max = " << maxVal;
+
+    result = oss.str();
+
+    std::cout << "Result: " << result << "\n";
+}
+
+template <typename T>
+T BelowMainDiagonalOperation<T>::getMinValue() const
+{
+    return minVal;
+}
+
+template <typename T>
+T BelowMainDiagonalOperation<T>::getMaxValue() const
+{
+    return maxVal;
+}
+
+template <typename T>
+void BelowMainDiagonalOperation<T>::setMinValue(T value)
+{
+    minVal = value;
+}
+
+template <typename T>
+void BelowMainDiagonalOperation<T>::setMaxValue(T value)
+{
+    maxVal = value;
+}
+
+template <typename T>
+std::string BelowMainDiagonalOperation<T>::getResult() const
+{
+    return result;
+}
+
+BelowMainDiagonalOperation.h:
+#ifndef BELOW_MAIN_DIAGONAL_OPERATION_H
+#define BELOW_MAIN_DIAGONAL_OPERATION_H
+
+#include "Operation.h"
+#include <vector>
+#include <string>
+#include <sstream>
+#include <limits>
+#include <stdexcept>
+
+template <typename T>
+class BelowMainDiagonalOperation : public Operation
+{
+public:
+    BelowMainDiagonalOperation() = default;
+
+    explicit BelowMainDiagonalOperation(const std::vector<std::vector<T>>& matrix);
+
+    void execute() override;
+
+    T getMinValue() const;
+    T getMaxValue() const;
+
+    void setMinValue(T value);
+    void setMaxValue(T value);
+
+    std::string getResult() const;
+
+private:
+    std::vector<std::vector<T>> matrix;
+    T minVal = std::numeric_limits<T>::max();
+    T maxVal = std::numeric_limits<T>::min();
+    std::string result;
+};
+
+#endif
+
+
+BelowSideDiagonalOperation.cpp:
+#include "BelowSideDiagonalOperation.h"
+#include <algorithm>
+#include <stdexcept>
+#include <sstream>
+
+template <typename T>
+BelowSideDiagonalOperation<T>::BelowSideDiagonalOperation(const std::vector<std::vector<T>>& matrix)
+{
+    if (matrix.empty() || matrix.size() != matrix[0].size())
+    {
+        throw std::invalid_argument("Matrix must be non-empty and square.");
+    }
+    this->matrix = matrix;
+}
+
+template <typename T>
+void BelowSideDiagonalOperation<T>::execute()
+{
+    if (matrix.empty() || matrix.size() != matrix[0].size())
+    {
+        throw std::runtime_error("Matrix is invalid or not square.");
+    }
+
+    int size = matrix.size();
+    minVal = matrix[1][size - 1]; 
+    maxVal = matrix[1][size - 1];
+
+ 
+    std::cout << "Matrix size: " << size << "\n";
+    std::cout << "Initial minVal = " << minVal << ", maxVal = " << maxVal << "\n";
+
+    for (int i = 1; i < size; ++i)
+    {
+        for (int j = size - i; j < size; ++j)
+        {
+            minVal = std::min(minVal, matrix[i][j]);
+            maxVal = std::max(maxVal, matrix[i][j]);
+
+            std::cout << "Processing element at (" << i << "," << j << ") = " << matrix[i][j] << "\n";
+        }
+    }
+
+    std::cout << "Final minVal = " << minVal << ", maxVal = " << maxVal << "\n";
+
+    std::ostringstream oss;
+    oss << "Below Side Diagonal: Min = " << minVal << ", Max = " << maxVal;
+
+    result = oss.str();
+
+    std::cout << "Result: " << result << "\n";
+}
+
+template <typename T>
+T BelowSideDiagonalOperation<T>::getMinValue() const
+{
+    return minVal;
+}
+
+template <typename T>
+T BelowSideDiagonalOperation<T>::getMaxValue() const
+{
+    return maxVal;
+}
+
+template <typename T>
+void BelowSideDiagonalOperation<T>::setMinValue(T value)
+{
+    minVal = value;
+}
+
+template <typename T>
+void BelowSideDiagonalOperation<T>::setMaxValue(T value)
+{
+    maxVal = value;
+}
+
+template <typename T>
+std::string BelowSideDiagonalOperation<T>::getResult() const
+{
+    return result;
+}
+
+BelowSideDiagonalOperation.h:
+#ifndef BELOW_SIDE_DIAGONAL_OPERATION_H
+#define BELOW_SIDE_DIAGONAL_OPERATION_H
+
+#include "Operation.h"
+#include <vector>
+#include <string>
+#include <sstream>
+#include <limits>
+#include <stdexcept>
+
+template <typename T>
+class BelowSideDiagonalOperation : public Operation
+{
+public:
+    BelowSideDiagonalOperation() = default;
+
+    explicit BelowSideDiagonalOperation(const std::vector<std::vector<T>>& matrix);
+
+    void execute() override;
+
+    T getMinValue() const;
+    T getMaxValue() const;
+
+    void setMinValue(T value);
+    void setMaxValue(T value);
+
+    std::string getResult() const;
+
+private:
+    std::vector<std::vector<T>> matrix;
+    T minVal = std::numeric_limits<T>::max();
+    T maxVal = std::numeric_limits<T>::min();
+    std::string result;
+};
+
+#endif
+
+
+
+
+Matrix.cpp
+#include "Matrix.h"
+
+template <typename T>
+Matrix<T>::Matrix() : size(0) {}
+
+template <typename T>
+bool Matrix<T>::hasTxtExtension(const std::string &filename) const
+{
+    return filename.size() >= 4 && filename.substr(filename.size() - 4) == ".txt";
+}
+
+template <typename T>
+void Matrix<T>::loadFromFile(const std::string &filename)
+{
+    if (!hasTxtExtension(filename))
+    {
+        throw std::runtime_error("Invalid file type. Expected a .txt file.");
+    }
+
+    std::ifstream file(filename);
+    if (!file.is_open())
+    {
+        throw std::runtime_error("Failed to open file: " + filename);
+    }
+
+    std::string line;
+    if (!std::getline(file, line))
+    {
+        throw std::runtime_error("Failed to read matrix size from file.");
+    }
+
+    try
+    {
+        size = std::stoi(line);
+        if (size <= 0)
+        {
+            throw std::runtime_error("Matrix size must be positive.");
+        }
+    }
+    catch (const std::exception &)
+    {
+        throw std::runtime_error("Invalid or missing matrix size in file: " + filename);
+    }
+
+    data.clear();
+    data.resize(size, std::vector<T>(size));
+
+    int rowCount = 0;
+    while (std::getline(file, line) && rowCount < size)
+    {
+        std::istringstream rowStream(line);
+        int colCount = 0;
+
+        while (colCount < size)
+        {
+            std::string cell;
+            if (!(rowStream >> cell))
+            {
+                throw std::runtime_error("Missing data at row " + std::to_string(rowCount + 1) + ", column " + std::to_string(colCount + 1));
+            }
+
+            try
+            {
+                if constexpr (std::is_same<T, double>::value)
+                {
+                    data[rowCount][colCount] = static_cast<T>(std::stod(cell));
+                }
+                else if constexpr (std::is_same<T, int>::value)
+                {
+                    data[rowCount][colCount] = static_cast<T>(std::stoi(cell));
+                }
+            }
+            catch (const std::exception &)
+            {
+                throw std::runtime_error("Invalid data at row " + std::to_string(rowCount + 1) + ", column " + std::to_string(colCount + 1));
+            }
+
+            ++colCount;
+        }
+
+        if (colCount != size)
+        {
+            throw std::runtime_error("Row " + std::to_string(rowCount + 1) + " does not match matrix size.");
+        }
+
+        ++rowCount;
+    }
+
+    if (rowCount != size)
+    {
+        throw std::runtime_error("Number of rows does not match matrix size.");
+    }
+
+    file.close();
+}
+
+template <typename T>
+void Matrix<T>::printToConsole() const
+{
+    for (const auto &row : data)
+    {
+        for (const auto &value : row)
+        {
+            std::cout << std::setw(6) << value << " ";
+        }
+        std::cout << "\n";
+    }
+}
+
+template <typename T>
+void Matrix<T>::printResultsToFile(const std::string &filename) const
+{
+    std::ofstream outFile(filename);
+    if (!outFile.is_open())
+    {
+        throw std::runtime_error("Failed to open file: " + filename);
+    }
+
+    outFile << "Matrix:\n";
+    for (const auto &row : data)
+    {
+        for (const auto &value : row)
+        {
+            outFile << std::setw(6) << value << " ";
+        }
+        outFile << "\n";
+    }
+    outFile << "\n";
+
+    T aboveMainMin = std::numeric_limits<T>::max();
+    T aboveMainMax = std::numeric_limits<T>::min();
+    T belowMainMin = std::numeric_limits<T>::max();
+    T belowMainMax = std::numeric_limits<T>::min();
+    T aboveSideMin = std::numeric_limits<T>::max();
+    T aboveSideMax = std::numeric_limits<T>::min();
+    T belowSideMin = std::numeric_limits<T>::max();
+    T belowSideMax = std::numeric_limits<T>::min();
+
+    int n = data.size();
+    for (int i = 0; i < n; ++i)
+    {
+        for (int j = 0; j < n; ++j)
+        {
+            if (i < j)
+            {
+                aboveMainMin = std::min(aboveMainMin, data[i][j]);
+                aboveMainMax = std::max(aboveMainMax, data[i][j]);
+            }
+            if (i > j)
+            {
+                belowMainMin = std::min(belowMainMin, data[i][j]);
+                belowMainMax = std::max(belowMainMax, data[i][j]);
+            }
+            if (i + j < n - 1)
+            {
+                aboveSideMin = std::min(aboveSideMin, data[i][j]);
+                aboveSideMax = std::max(aboveSideMax, data[i][j]);
+            }
+            if (i + j > n - 1)
+            {
+                belowSideMin = std::min(belowSideMin, data[i][j]);
+                belowSideMax = std::max(belowSideMax, data[i][j]);
+            }
+        }
+    }
+
+    outFile << "Results:\n";
+    outFile << "Above Main Diagonal: Min = " << aboveMainMin << ", Max = " << aboveMainMax << "\n";
+    outFile << "Below Main Diagonal: Min = " << belowMainMin << ", Max = " << belowMainMax << "\n";
+    outFile << "Above Side Diagonal: Min = " << aboveSideMin << ", Max = " << aboveSideMax << "\n";
+    outFile << "Below Side Diagonal: Min = " << belowSideMin << ", Max = " << belowSideMax << "\n";
+
+    std::cout << "Matrix and calculations saved to file: " << filename << "\n";
+}
+
+template <typename T>
+const std::vector<std::vector<T>> &Matrix<T>::getData() const
+{
+    return data;
+}
+
+template <typename T>
+int Matrix<T>::getSize() const
+{
+    return size;
+}
+
+template class Matrix<int>;
+template class Matrix<double>;
+
+Matrix.h:
+#ifndef MATRIX_H
+#define MATRIX_H
+
+#include <iostream>
+#include <vector>
+#include <string>
+#include <fstream>
+#include <sstream>
+#include <iomanip>
+#include <stdexcept>
+
+template <typename T>
+class Matrix
+{
+public:
+    Matrix();
+
+    void loadFromFile(const std::string &filename);
+    void printToConsole() const;
+    void printResultsToFile(const std::string &filename) const;
+
+    const std::vector<std::vector<T>> &getData() const;
+    int getSize() const;
+
+private:
+    int size;
+    std::vector<std::vector<T>> data;
+
+    bool hasTxtExtension(const std::string &filename) const;
+};
+
+#endif
+
+Operation.h:
+#ifndef OPERATION_H
+#define OPERATION_H
+
+#include <vector>
+#include <string>
+#include <iostream>
+#include <limits>
+#include <stdexcept>
+
+class Operation {
+protected:
+    std::vector<std::vector<int>> matrix;
+    std::string result;
+
+public:
+    Operation() = default;
+
+
+    explicit Operation(const std::vector<std::vector<int>>& matrix) {
+        setMatrix(matrix);
+    }
+
+    virtual ~Operation() = default;
+
+    virtual void execute() = 0;
+
+    void setMatrix(const std::vector<std::vector<int>>& matrix);
+
+    std::string getResult() const { return result; }
+
+    void clearResult() { result.clear(); }
+};
+
+#endif
+
+Operation.cpp:
+#include "Operation.h"
+
+void Operation::setMatrix(const std::vector<std::vector<int>>& matrix) {
+    if (matrix.empty() || matrix.size() != matrix[0].size()) {
+        throw std::invalid_argument("Matrix must be non-empty and square.");
+    }
+    this->matrix = matrix;
+}
+
+MatrixAnylazer.cpp
+#include "Matrix.h"
+#include "AboveMainDiagonalOperation.h"
+#include "BelowMainDiagonalOperation.h"
+#include "AboveSideDiagonalOperation.h"
+#include "BelowSideDiagonalOperation.h"
+#include "AboveMainDiagonalOperation.cpp"
+#include "BelowMainDiagonalOperation.cpp"
+#include "AboveSideDiagonalOperation.cpp"
+#include "BelowSideDiagonalOperation.cpp"
+#include <memory>
+#include <iostream>
+#include <vector>
+
+template <typename T>
+void processMatrix(const std::string& inputFilename, const std::string& outputFilename) {
+    try {
+        Matrix<T> matrix;
+        matrix.loadFromFile(inputFilename);
+
+        std::cout << "Matrix:\n";
+        matrix.printToConsole();
+
+  
+        std::vector<std::unique_ptr<Operation>> operations;
+        operations.push_back(std::make_unique<AboveMainDiagonalOperation<T>>(matrix.getData()));
+        operations.push_back(std::make_unique<BelowMainDiagonalOperation<T>>(matrix.getData()));
+        operations.push_back(std::make_unique<AboveSideDiagonalOperation<T>>(matrix.getData()));
+        operations.push_back(std::make_unique<BelowSideDiagonalOperation<T>>(matrix.getData()));
+
+        std::cout << "\nResults:\n";
+        for (const auto& operation : operations) {
+            operation->execute();
+            std::cout << operation->getResult();
+        }
+
+        matrix.printResultsToFile(outputFilename);
+        std::cout << "\nResults saved to " << outputFilename << std::endl;
+    }
+    catch (const std::exception& e) {
+        std::cerr << "Error: " << e.what() << std::endl;
+    }
+}
+
+int main() {
+    std::string inputFilename, outputFilename;
+    std::string typeChoice;
+
+    std::cout << "Enter the matrix file name: ";
+    std::cin >> inputFilename;
+
+    std::cout << "Enter the output file name: ";
+    std::cin >> outputFilename;
+
+    std::cout << "Choose matrix type (int/double): ";
+    std::cin >> typeChoice;
+
+    if (typeChoice == "int") {
+        processMatrix<int>(inputFilename, outputFilename);
+    }
+    else if (typeChoice == "double") {
+        processMatrix<double>(inputFilename, outputFilename);
+    }
+    else {
+        std::cerr << "Unsupported matrix type. Please choose 'int' or 'double'." << std::endl;
+    }
+
+    return 0;
+}
